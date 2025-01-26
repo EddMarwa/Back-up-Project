@@ -18,6 +18,12 @@ body {
     justify-content: space-between;
     align-items: center;
   }
+  /* Logo styling */
+.logo img {
+    height: 42px; /* Adjust the size of the logo */
+    width: auto;
+    margin-right: 1rem;
+  }
   
   .nav-links {
     list-style: none;
