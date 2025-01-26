@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Green Market - Product Detail</title>
+  <title>Product Detail</title>
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
@@ -21,25 +21,53 @@
     </nav>
   </header>
 
-  <main class="product-detail-container">
-    <section class="product-detail">
-      <div class="product-image">
-        <img id="productImage" src="" alt="Product Image">
+  <main>
+    <div class="product-detail-container">
+      <img src="images/laptop.jfif" alt="Laptop">
+      <h2>Laptop</h2>
+      <p>Ksh 40,000</p>
+      <p>This is a second-hand laptop in great condition.</p>
+
+      <!-- Rent/Buy Buttons -->
+      <div class="purchase-options">
+        <button class="btn" id="buy-btn">Buy Now</button>
+        <button class="btn" id="rent-btn">Rent Now</button>
       </div>
-      <div class="product-info">
-        <h1 id="productName">Product Name</h1>
-        <p id="productPrice">Price: </p>
-        <p id="productDescription">Description: </p>
-        <button id="addToCartButton" class="btn">Add to Cart</button>
-        <button id="rentProductButton" class="btn">Rent Now</button>
+
+      <!-- Rent Period Input (hidden by default) -->
+      <div id="rent-period" class="hidden">
+        <label for="rental-days">Rental Period (Days):</label>
+        <input type="number" id="rental-days" name="rental-days" placeholder="Enter number of days">
+        <button class="btn" id="confirm-rent">Confirm Rent</button>
       </div>
-    </section>
+    </div>
   </main>
 
   <footer>
     <p>&copy; 2025 Green Market. All rights reserved.</p>
   </footer>
 
-  <script src="scripts/product-detail.js"></script>
+  <script>
+    // Handle Rent/Buy Button clicks
+    document.getElementById("buy-btn").addEventListener("click", function() {
+      alert("You've chosen to buy the laptop.");
+      // Add further actions, like adding to the cart or proceeding to checkout.
+    });
+
+    document.getElementById("rent-btn").addEventListener("click", function() {
+      document.getElementById("rent-period").classList.remove("hidden");
+      // Optionally, display rental period field and confirm button.
+    });
+
+    document.getElementById("confirm-rent").addEventListener("click", function() {
+      const rentalDays = document.getElementById("rental-days").value;
+      if (rentalDays) {
+        alert(`You've chosen to rent the laptop for ${rentalDays} days.`);
+        // Handle further steps, like adding to a rental cart or saving to backend.
+      } else {
+        alert("Please enter a valid rental period.");
+      }
+    });
+  </script>
 </body>
 </html>

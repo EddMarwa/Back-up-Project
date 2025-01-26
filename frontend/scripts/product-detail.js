@@ -1,52 +1,51 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Updated mock data
-    const products = {
-      1: {
-        name: "Laptop",
-        price: 40000,
-        description: "A powerful laptop for all your computing needs.",
-        image: "images/laptop.jpg",
-      },
-      2: {
-        name: "Smartphone",
-        price: 30000,
-        description: "A sleek smartphone with all the latest features.",
-        image: "images/phone.jpg",
-      },
-      3: {
-        name: "Headphones",
-        price: 5000,
-        description: "High-quality headphones with great sound.",
-        image: "images/headphones.jpg",
-      },
-      4: {
-        name: "Gaming Console",
-        price: 25000,
-        description: "Experience next-level gaming with this console.",
-        image: "images/console.jpg",
-      },
-    };
-  
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get("id");
-  
-    if (products[productId]) {
-      const product = products[productId];
-      document.getElementById("productName").textContent = product.name;
-      document.getElementById("productPrice").textContent = `Price: Ksh ${product.price.toLocaleString()}`;
-      document.getElementById("productDescription").textContent = `Description: ${product.description}`;
-      document.getElementById("productImage").src = product.image;
-    } else {
-      alert("Product not found!");
-      window.location.href = "product-list.html";
-    }
-  
-    document.getElementById("addToCartButton").addEventListener("click", () => {
-      alert("Product added to cart!");
-    });
-  
-    document.getElementById("rentProductButton").addEventListener("click", () => {
-      alert("Product rented successfully!");
-    });
+document.addEventListener("DOMContentLoaded", function() {
+  // Get the product ID from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('id');
+
+  // Mock product data
+  const products = [
+    {
+      id: 1,
+      name: "Laptop",
+      price: 40000,
+      description: "A powerful laptop for all your computing needs.",
+      image: "images/laptop.jfif",
+    },
+    {
+      id: 2,
+      name: "Smartphone",
+      price: 30000,
+      description: "A sleek smartphone with all the latest features.",
+      image: "images/phone.jpg",
+    },
+    {
+      id: 3,
+      name: "Headphones",
+      price: 5000,
+      description: "High-quality headphones with great sound.",
+      image: "images/headphones.jpg",
+    },
+  ];
+
+  // Find the product based on the ID
+  const product = products.find(p => p.id == productId);
+
+  const productDetailContainer = document.querySelector('.product-detail-container');
+  if (product) {
+    productDetailContainer.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
+      <h2>${product.name}</h2>
+      <p>${product.description}</p>
+      <p><strong>Ksh ${product.price.toLocaleString()}</strong></p>
+    `;
+  } else {
+    productDetailContainer.innerHTML = "<p>Product not found.</p>";
+  }
+
+  // Handle Add to Cart button click
+  const addToCartBtn = document.getElementById('add-to-cart-btn');
+  addToCartBtn.addEventListener('click', () => {
+    alert(`${product.name} has been added to your cart!`);
   });
-  
+});
