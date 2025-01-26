@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Green Market</title>
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="images/logo.png" alt="Green Market Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product-list.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="checkout-container">
+      <h1>Checkout</h1>
+      
+      <!-- Cart Items Summary -->
+      <div class="cart-summary">
+        <h2>Your Order</h2>
+        <div class="cart-item">
+          <img src="images/laptop.jfif" alt="Laptop">
+          <div class="cart-item-details">
+            <h3>Laptop</h3>
+            <p>Price: Ksh 40,000</p>
+            <p>Quantity: 1</p>
+            <p>Rental Days: 7 (if rented)</p>
+            <p>Total: Ksh 40,000</p>
+          </div>
+        </div>
+
+        <div class="cart-item">
+          <img src="images/phone.jpg" alt="Smartphone">
+          <div class="cart-item-details">
+            <h3>Smartphone</h3>
+            <p>Price: Ksh 30,000</p>
+            <p>Quantity: 1</p>
+            <p>Rental Days: 0 (if bought)</p>
+            <p>Total: Ksh 30,000</p>
+          </div>
+        </div>
+
+        <div class="cart-total">
+          <h3>Total Amount: Ksh 70,000</h3>
+        </div>
+      </div>
+
+      <!-- User Information Form -->
+      <div class="checkout-form">
+        <h2>Enter Shipping Information</h2>
+        <form id="checkout-form">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="address">Shipping Address</label>
+          <textarea id="address" name="address" rows="4" required></textarea>
+
+          <label for="payment-method">Payment Method</label>
+          <select id="payment-method" name="payment-method" required>
+            <option value="credit-card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="mpesa">M-Pesa</option>
+          </select>
+
+          <button type="submit" class="btn">Proceed to Payment</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Green Market. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Form submission handling
+    document.getElementById("checkout-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const address = document.getElementById("address").value;
+      const paymentMethod = document.getElementById("payment-method").value;
+
+      // Simulate order confirmation
+      alert(`Order Confirmation:
+        Name: ${name}
+        Email: ${email}
+        Address: ${address}
+        Payment Method: ${paymentMethod}
+        Total: Ksh 70,000
+      `);
+
+      // You can redirect to a thank you or order summary page
+      window.location.href = "order-confirmation.html";
+    });
+  </script>
+</body>
+</html>
