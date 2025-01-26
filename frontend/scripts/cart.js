@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Mock cart data
     let cart = [
-      { id: 1, name: "Laptop", price: 400, quantity: 1, image: "images/laptop.jpg" },
-      { id: 2, name: "Headphones", price: 50, quantity: 2, image: "images/headphones.jpg" },
+      { id: 1, name: "Laptop", price: 40000, quantity: 1, image: "images/laptop.jpg" },
+      { id: 2, name: "Headphones", price: 5000, quantity: 2, image: "images/headphones.jpg" },
     ];
   
     const cartItemsContainer = document.querySelector(".cart-items");
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <img src="${item.image}" alt="${item.name}">
             <div class="cart-item-details">
               <h4>${item.name}</h4>
-              <p>$${item.price} x ${item.quantity}</p>
+              <p>Ksh ${item.price} x ${item.quantity}</p>
             </div>
             <div class="cart-item-controls">
               <button onclick="removeFromCart(${item.id})">Remove</button>
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cartItemsContainer.innerHTML += cartItem;
       });
   
-      cartTotalElement.textContent = `$${total.toFixed(2)}`;
+      cartTotalElement.textContent = `Ksh ${total.toLocaleString()}`;
     }
   
     // Function to remove an item from the cart

@@ -1,40 +1,39 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Mock data
+    // Updated mock data
     const products = {
       1: {
         name: "Laptop",
-        price: "$400",
+        price: 40000,
         description: "A powerful laptop for all your computing needs.",
         image: "images/laptop.jpg",
       },
       2: {
         name: "Smartphone",
-        price: "$300",
+        price: 30000,
         description: "A sleek smartphone with all the latest features.",
         image: "images/phone.jpg",
       },
       3: {
         name: "Headphones",
-        price: "$50",
+        price: 5000,
         description: "High-quality headphones with great sound.",
         image: "images/headphones.jpg",
       },
       4: {
         name: "Gaming Console",
-        price: "$250",
+        price: 25000,
         description: "Experience next-level gaming with this console.",
         image: "images/console.jpg",
       },
     };
   
-    // Get product ID from query parameters
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get("id");
   
     if (products[productId]) {
       const product = products[productId];
       document.getElementById("productName").textContent = product.name;
-      document.getElementById("productPrice").textContent = `Price: ${product.price}`;
+      document.getElementById("productPrice").textContent = `Price: Ksh ${product.price.toLocaleString()}`;
       document.getElementById("productDescription").textContent = `Description: ${product.description}`;
       document.getElementById("productImage").src = product.image;
     } else {
@@ -42,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "product-list.html";
     }
   
-    // Add event listeners for buttons (placeholders for functionality)
     document.getElementById("addToCartButton").addEventListener("click", () => {
       alert("Product added to cart!");
     });

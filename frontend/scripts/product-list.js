@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Updated mock data
+    // Mock product data
     const products = [
       {
         id: 1,
@@ -31,24 +31,20 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     ];
   
-    const productListContainer = document.querySelector(".product-list");
+    const productContainer = document.querySelector(".product-container");
   
-    // Render product list
+    // Render products dynamically
     products.forEach((product) => {
-      const productItem = `
+      const productCard = `
         <div class="product-card">
           <img src="${product.image}" alt="${product.name}">
           <h3>${product.name}</h3>
+          <p>${product.description}</p>
           <p>Ksh ${product.price.toLocaleString()}</p>
-          <button onclick="viewProduct(${product.id})">View Details</button>
+          <a href="product-detail.html?id=${product.id}" class="btn">View Details</a>
         </div>
       `;
-      productListContainer.innerHTML += productItem;
+      productContainer.innerHTML += productCard;
     });
-  
-    // View product (redirect to detail page)
-    window.viewProduct = (id) => {
-      window.location.href = `product-detail.html?id=${id}`;
-    };
   });
   
