@@ -544,3 +544,81 @@ footer {
 .checkout-form button:hover {
   background-color: #2c6e2f;
 }
+/* Loading bar styles still under checkout */
+ /* Loading Bar Styles */
+ .loading-container {
+  width: 100%;
+  height: 20px;
+  background-color: #f3f3f3;
+  margin-top: 50px;
+  overflow: hidden;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #388e3c 10%, transparent 10%, transparent 20%, #388e3c 20%, #388e3c 30%, transparent 30%, transparent 40%, #388e3c 40%);
+  background-size: 50px 100%;
+  animation: barcode-loading 3s linear forwards;
+}
+
+@keyframes barcode-loading {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.loading-bar {
+  height: 100%;
+  width: 0;
+  background-color: #388e3c;
+  border-radius: 10px;
+  animation: load 3s ease-in-out forwards;
+}
+
+@keyframes load {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Text Display After Loading Bar */
+.confirmation-message {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+  padding: 2rem;
+  border: 2px solid #388e3c;
+  border-radius: 10px;
+  background-color: #f1f8e9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.confirmation-message h1 {
+  font-size: 2rem;
+  color: #388e3c;
+}
+
+.confirmation-message p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  color: #555;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #388e3c;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.btn:hover {
+  background-color: #2c6e2f;
+}
