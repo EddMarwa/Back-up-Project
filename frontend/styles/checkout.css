@@ -1,0 +1,206 @@
+/* Checkout Page */
+.checkout-container {
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  .checkout-container h2 {
+    text-align: center;
+    color: #388e3c;
+    margin-bottom: 1.5rem;
+  }
+  
+  .checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .checkout-form input {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .checkout-form .btn {
+    background-color: #388e3c;
+    color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .checkout-form .btn:hover {
+    background-color: #2c6e2f;
+  }
+  
+  /* Checkout Page Styles */
+  .checkout-container {
+    width: 80%;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .checkout-container h1 {
+    text-align: center;
+    color: #388e3c;
+  }
+  
+  .cart-summary {
+    margin-bottom: 2rem;
+  }
+  
+  .cart-item {
+    display: flex;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 1rem;
+  }
+  
+  .cart-item img {
+    width: 150px;
+    height: auto;
+    margin-right: 1rem;
+  }
+  
+  .cart-item-details h3 {
+    font-size: 1.25rem;
+    color: #388e3c;
+  }
+  
+  .cart-item-details p {
+    font-size: 1rem;
+  }
+  
+  .cart-total {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 1rem;
+  }
+  
+  .checkout-form {
+    margin-top: 2rem;
+  }
+  
+  .checkout-form h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .checkout-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .checkout-form input,
+  .checkout-form select,
+  .checkout-form textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .checkout-form button {
+    background-color: #388e3c;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1rem;
+  }
+  
+  .checkout-form button:hover {
+    background-color: #2c6e2f;
+  }
+  /* Loading bar styles still under checkout */
+   /* Loading Bar Styles */
+      .loading-container {
+        width: 100%;
+        height: 20px;
+        background-color: #f3f3f3;
+        margin-top: 50px;
+        overflow: hidden;
+        border-radius: 10px;
+        background-image: linear-gradient(to right, #388e3c 10%, transparent 10%, transparent 20%, #388e3c 20%, #388e3c 30%, transparent 30%, transparent 40%, #388e3c 40%);
+        background-size: 50px 100%;
+        animation: barcode-loading 3s linear forwards;
+      }
+  
+      @keyframes barcode-loading {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: 100% 0;
+        }
+      }
+  
+      .loading-bar {
+        height: 100%;
+        width: 0;
+        background-color: #388e3c;
+        border-radius: 10px;
+        animation: load 3s ease-in-out forwards;
+      }
+  
+      @keyframes load {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+  
+      /* Text Display After Loading Bar */
+      .confirmation-message {
+        display: none;
+        text-align: center;
+        margin-top: 20px;
+        padding: 2rem;
+        border: 2px solid #388e3c;
+        border-radius: 10px;
+        background-color: #f1f8e9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+  
+      .confirmation-message h1 {
+        font-size: 2rem;
+        color: #388e3c;
+      }
+  
+      .confirmation-message p {
+        font-size: 1.2rem;
+        margin-top: 10px;
+        color: #555;
+      }
+  
+      .btn {
+        display: inline-block;
+        background-color: #388e3c;
+        color: white;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-top: 20px;
+      }
+  
+      .btn:hover {
+        background-color: #2c6e2f;
+      }
+      
