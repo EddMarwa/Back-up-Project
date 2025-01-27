@@ -1,169 +1,214 @@
-
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-  }
-  
-  header {
-    background-color: #388e3c; /* Green background */
-    color: #fff;
-    padding: 1rem;
-  }
-  
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  /* Logo Styling */
-  .logo img {
-    height: 42px; /* Adjust the size of the logo */
-    width: auto;
-    margin-right: 1rem;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .nav-links a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .nav-links a:hover {
-    color: #c8e6c9; /* Light green hover effect */
-  }
-/* Featured Products */
-.featured {
-    padding: 2rem;
-    background-color: #f1f8e9;
-    text-align: center;
-  }
-  
-  .featured h2 {
-    color: #388e3c;
-    margin-bottom: 1.5rem;
-  }
-  
-  .featured-products {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-  
-  .product-card {
-    background-color: #fff;
-    border: 1px solid #81c784;
-    border-radius: 8px;
-    padding: 1rem;
-    width: 250px;
-    text-align: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .product-card img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  .product-card h3 {
-    color: #388e3c;
-    margin: 0.5rem 0;
-  }
-  
-  .product-card p {
-    font-size: 1.1rem;
-    color: #333;
-    margin: 0.5rem 0;
-  }
-  
-  .product-card .btn {
-    background-color: #388e3c;
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-  
-  .product-card .btn:hover {
-    background-color: #2e7d32;
-  }
-  
-  .product-card h3 {
-    margin-top: 1rem;
-    color: #388e3c;
-  }
-  
-  .product-card p {
-    color: #555;
-  }
-  
-  .product-card .btn {
-    background-color: #388e3c;
-    color: white;
-    padding: 0.5rem;
-    border-radius: 4px;
-    text-decoration: none;
-    margin-top: 1rem;
-  }
-  
-  .product-detail-container {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+header {
+  background-color: #388e3c; /* Green background */
+  color: #fff;
+  padding: 1rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 42px; /* Adjust the size of the logo */
+  width: auto;
+  margin-right: 1rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  color: #c8e6c9; /* Light green hover effect */
+}
+
+/* Product Detail Container */
+.product-detail-container {
     background-color: white;
     border: 1px solid #81c784;
     border-radius: 8px;
-    width: 60%;
-    margin: 0 auto;
-    padding: 2rem;
+    width: 30%; /* Reduced width for smaller size */
+    margin: 1rem; /* Smaller margin for tighter spacing */
+    padding: 1rem; /* Reduced padding */
     text-align: center;
-  }
-  
-  .product-detail-container img {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Lighter shadow for a subtle effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block; /* Allow multiple containers to display side by side */
+    vertical-align: top;
+}
+
+.product-detail-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger hover effect */
+}
+
+.product-detail-container img {
     width: 100%;
-    height: 300px;
+    height: 200px; /* Reduced height for consistent product images */
     object-fit: cover;
-  }
-  
-  .product-detail h2 {
+    border-radius: 8px;
+}
+
+.product-detail-container h2 {
     color: #388e3c;
-  }
-  
-  .product-detail p {
+    margin-top: 0.5rem;
+    font-size: 1.25rem; /* Smaller font for tighter layout */
+}
+
+.product-detail-container p {
     color: #555;
-  }
-  .purchase-options {
+    margin: 0.5rem 0;
+    font-size: 0.9rem; /* Adjusted font size for compact layout */
+    line-height: 1.4;
+}
+
+/* Adjust button layout for smaller containers */
+.purchase-options {
     display: flex;
-    gap: 1rem;
-  }
-  
-  .purchase-options button {
-    width: 45%;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  .btn {
+    justify-content: center;
+    gap: 0.5rem; /* Reduced gap between buttons */
+    margin-top: 0.5rem; /* Smaller margin */
+}
+
+.purchase-options button {
     background-color: #388e3c;
     color: white;
-    padding: 1rem 2rem;
-    border-radius: 4px;
-    margin-top: 2rem;
+    padding: 0.5rem 1rem; /* Reduced padding for smaller buttons */
     border: none;
+    border-radius: 4px;
+    font-size: 0.9rem; /* Adjusted font size */
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.purchase-options button:hover {
+    background-color: #2e7d32;
+}
+
+/* Rental Period Adjustments */
+#rent-period {
+    margin-top: 1rem;
+}
+
+#rental-days {
+    width: 80%; /* Smaller input field width */
+    padding: 0.4rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#confirm-rent {
+    margin-top: 0.5rem;
+    background-color: #388e3c;
+    color: white;
+    padding: 0.5rem 1rem; /* Reduced button size */
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+#confirm-rent:hover {
+    background-color: #2e7d32;
+}
+
+/* Responsive Design for Multi-Product Layout */
+@media (max-width: 768px) {
+    .product-detail-container {
+        width: 90%; /* Adjust width for smaller screens */
+        margin: 0.5rem auto;
+    }
+
+    .purchase-options button {
+        width: 100%; /* Full-width buttons for smaller screens */
+    }
+
+    #rental-days {
+        width: 90%;
+    }
+}
+
+/* Confirm Rent Button */
+#confirm-rent {
+  margin-top: 1rem;
+  background-color: #388e3c;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#confirm-rent:hover {
+  background-color: #2e7d32;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-detail-container {
+      width: 90%;
   }
-  
-  
+
+  .purchase-options button {
+      width: 100%;
+  }
+
+  #rental-days {
+      width: 90%;
+  }
+}
+/* Footer Styles */
+footer {
+  background-color: #388e3c; /* Green background for consistency */
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem; /* Slightly smaller font size */
+  margin-top: 2rem; /* Adds separation from main content */
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow effect for elevation */
+}
+
+footer p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+footer a {
+  color: #c8e6c9; /* Light green for links */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  color: #fff; /* White on hover for better visibility */
+  text-decoration: underline; /* Adds emphasis */
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  footer {
+      padding: 1.5rem 1rem; /* Extra padding for smaller screens */
+      font-size: 1rem; /* Slightly larger text for readability */
+  }
+}
