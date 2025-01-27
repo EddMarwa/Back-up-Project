@@ -1,0 +1,127 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure that body takes full height */
+  }
+  
+  header {
+    background-color: #388e3c; /* Green background */
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+  }
+  
+  header .logo img {
+    width: 150px;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin: 0 15px;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  nav ul li a:hover {
+    color: #c8e6c9; /* Light green hover effect */
+  }
+  
+  main {
+    flex: 1; /* Make the main content take available space */
+    padding: 20px;
+  }
+  
+  .order-confirmation-container {
+    background-color: white;
+    padding: 20px;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 100px; /* Add space to avoid overlap with footer */
+  }
+  
+  .order-confirmation-container h1 {
+    color: #388e3c;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .order-summary, .shipping-info, .payment-info {
+    margin-bottom: 15px;
+  }
+  
+  .order-summary h2, .shipping-info h2, .payment-info h2 {
+    color: #388e3c;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+  }
+  
+  .order-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+  }
+  
+  .order-item-details h3 {
+    font-size: 1.1em;
+    margin: 0;
+    color: #388e3c;
+  }
+  
+  .order-item-details p {
+    margin: 5px 0;
+    font-size: 1em;
+  }
+  
+  .order-total {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: right;
+    color: #388e3c;
+  }
+  
+  .shipping-info p, .payment-info p {
+    margin: 5px 0;
+  }
+  
+  .btn {
+    display: inline-block;
+    background-color: #388e3c; /* Green button */
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .btn:hover {
+    background-color: #2e7d32;
+  }
+  
+  footer {
+    background-color: #388e3c;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+  }
+  

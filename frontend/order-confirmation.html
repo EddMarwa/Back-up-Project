@@ -4,55 +4,94 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Confirmation - Green Market</title>
-  <link rel="stylesheet" href="styles/order.css">
+  <link rel="stylesheet" href="styles/order-confirmation.css">
 </head>
 <body>
-    <header>
-      <nav>
-        <div class="logo">
-          <img src="images/logo.png" alt="Green Market Logo">
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="images/logo.png" alt="Green Market Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product-list.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="order-confirmation-container">
+      <h1>Thank You for Your Order!</h1>
+
+      <!-- Order Summary Section -->
+      <div class="order-summary">
+        <h2>Order Summary</h2>
+        <div id="order-items-container">
+          <!-- Order items will be dynamically added here -->
         </div>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="product-list.html">Products</a></li>
-          <li><a href="cart.html">Cart</a></li>
-          <li><a href="login.html">Login</a></li>
-        </ul>
-      </nav>
-    </header>
-  
-    <main>
-      <section class="order-confirmation">
-        <!-- Barcode-style loading bar -->
-        <div class="loading-container">
-          <div class="loading-bar" id="loading-bar"></div>
+
+        <div class="order-total">
+          <h3>Total: <span id="order-total-amount">Ksh 0.00</span></h3>
         </div>
-  
-        <!-- Confirmation message (hidden initially) -->
-        <div class="confirmation-message" id="confirmation-message">
-          <h1>Thank you for your order!</h1>
-          <p>Your order has been successfully placed.</p>
-          <p>A confirmation email has been sent to you.</p>
-          <p>You can expect your items to arrive shortly.</p>
-          <a href="index.html" class="btn">Return to Home</a>
+      </div>
+
+      <!-- Shipping Information -->
+      <div class="shipping-info">
+        <p><strong>Name:</strong> <span id="shipping-name"></span></p>
+        <p><strong>Shipping Address:</strong> <span id="shipping-address"></span></p>
+      </div>
+
+      <!-- Payment Information -->
+      <div class="payment-info">
+        <p><strong>Payment Method:</strong> <span id="payment-method"></span></p>
+      </div>
+
+      <a href="index.html" class="btn">Back to Home</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Green Market. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Simulate fetching order details from localStorage or API (for demo purposes)
+    const orderDetails = {
+      name: "John Doe",
+      address: "123 Green Street, Nairobi",
+      paymentMethod: "M-Pesa",
+      items: [
+        { name: "Laptop", price: 40000, quantity: 1 },
+        { name: "Smartphone", price: 30000, quantity: 1 }
+      ],
+      totalAmount: 70000
+    };
+
+    // Render the order summary
+    document.getElementById("shipping-name").textContent = orderDetails.name;
+    document.getElementById("shipping-address").textContent = orderDetails.address;
+    document.getElementById("payment-method").textContent = orderDetails.paymentMethod;
+
+    const orderItemsContainer = document.getElementById("order-items-container");
+    orderDetails.items.forEach(item => {
+      const orderItemDiv = document.createElement("div");
+      orderItemDiv.classList.add("order-item");
+
+      orderItemDiv.innerHTML = `
+        <div class="order-item-details">
+          <h3>${item.name}</h3>
+          <p>Price: Ksh ${item.price}</p>
+          <p>Qty: ${item.quantity}</p>
+          <p>Total: Ksh ${item.price * item.quantity}</p>
         </div>
-      </section>
-    </main>
-  
-    <footer>
-      <p>&copy; 2025 Green Market. All rights reserved.</p>
-    </footer>
-  
-    <script>
-      // Wait for the loading animation to finish, then show the confirmation message
-      window.onload = function() {
-        // Set a timeout for when the loading animation finishes
-        setTimeout(function() {
-          // Hide the loading bar and show the confirmation message
-          document.getElementById("loading-bar").style.display = 'none';
-          document.getElementById("confirmation-message").style.display = 'block';
-        }, 3000); // The time matches the animation duration (3 seconds)
-      };
-    </script>
-  </body>
+      `;
+      orderItemsContainer.appendChild(orderItemDiv);
+    });
+
+    // Update the total amount on the page
+    document.getElementById("order-total-amount").textContent = `Ksh ${orderDetails.totalAmount}`;
+  </script>
+</body>
 </html>
