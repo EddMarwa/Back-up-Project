@@ -137,11 +137,6 @@ app.post("/upload", upload.single("image"), async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 });
-
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
 const user = firebase.auth().currentUser;
 if (user && user.email === "admin@example.com") {
   // Allow upload
