@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Green Market - Login</title>
-  <link rel="stylesheet" href="styles/login.css">
+  <title>Login/Sign-Up - Green Market</title>
+  <link rel="stylesheet" href="styles/login-signup.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 </head>
 <body>
   <header>
@@ -12,41 +15,43 @@
       <div class="logo">
         <img src="images/logo.png" alt="Green Market Logo">
       </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="product-list.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
     </nav>
   </header>
 
-  <main class="auth-page">
+  <main>
     <section class="auth-container">
-      <h2>Welcome Back to Green Market</h2>
-      <form class="auth-form" id="loginForm">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Enter your email" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter your password" required>
-        </div>
-        <button type="submit" class="btn">Login</button>
-        <p class="auth-link">Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
-      </form>
+      <div class="auth-card">
+        <h2>Welcome</h2>
 
-      <form class="auth-form hidden" id="signupForm">
-        <div class="form-group">
-          <label for="signupName">Name</label>
-          <input type="text" id="signupName" placeholder="Enter your name" required>
+        <!-- Login Form -->
+        <div id="login-form">
+          <input type="email" id="login-email" placeholder="Email" required>
+          <input type="password" id="login-password" placeholder="Password" required>
+          <button class="btn" id="login-btn">Login</button>
+          <p class="forgot-password">
+            <a href="#" id="forgot-password-link">Forgot password?</a>
+          </p>
+          <p>Or login with</p>
+          <button class="btn" id="google-login">Google</button>
+          <button class="btn" id="facebook-login">Facebook</button>
+          <p>Don't have an account? <a href="#" id="show-signup">Sign Up</a></p>
         </div>
-        <div class="form-group">
-          <label for="signupEmail">Email</label>
-          <input type="email" id="signupEmail" placeholder="Enter your email" required>
+
+        <!-- Sign-Up Form -->
+        <div id="signup-form" style="display: none;">
+          <h2>Create Account</h2>
+          <input type="text" id="signup-name" placeholder="Full Name" required>
+          <input type="email" id="signup-email" placeholder="Email" required>
+          <input type="password" id="signup-password" placeholder="Password" required>
+          <button class="btn" id="signup-btn">Sign Up</button>
+          <p>Already have an account? <a href="#" id="show-login">Login</a></p>
         </div>
-        <div class="form-group">
-          <label for="signupPassword">Password</label>
-          <input type="password" id="signupPassword" placeholder="Create a password" required>
-        </div>
-        <button type="submit" class="btn">Sign Up</button>
-        <p class="auth-link">Already have an account? <a href="#" id="showLogin">Log in</a></p>
-      </form>
+      </div>
     </section>
   </main>
 
@@ -54,6 +59,6 @@
     <p>&copy; 2025 Green Market. All rights reserved.</p>
   </footer>
 
-  <script src="scripts/auth.js"></script>
+  <script src="scripts/login-signup.js"></script>
 </body>
 </html>
