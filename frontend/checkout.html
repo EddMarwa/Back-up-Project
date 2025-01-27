@@ -28,30 +28,12 @@
       <!-- Cart Items Summary -->
       <div class="cart-summary">
         <h2>Your Order</h2>
-        <div class="cart-item">
-          <img src="images/laptop.jfif" alt="Laptop">
-          <div class="cart-item-details">
-            <h3>Laptop</h3>
-            <p>Price: Ksh 40,000</p>
-            <p>Quantity: 1</p>
-            <p>Rental Days: 7 (if rented)</p>
-            <p>Total: Ksh 40,000</p>
-          </div>
-        </div>
-
-        <div class="cart-item">
-          <img src="images/phone.jpg" alt="Smartphone">
-          <div class="cart-item-details">
-            <h3>Smartphone</h3>
-            <p>Price: Ksh 30,000</p>
-            <p>Quantity: 1</p>
-            <p>Rental Days: 0 (if bought)</p>
-            <p>Total: Ksh 30,000</p>
-          </div>
+        <div id="cart-items-container">
+          <!-- Cart items will be dynamically added here -->
         </div>
 
         <div class="cart-total">
-          <h3>Total Amount: Ksh 70,000</h3>
+          <h3>Total Amount: <span id="total-amount">Ksh 0.00</span></h3>
         </div>
       </div>
 
@@ -60,13 +42,13 @@
         <h2>Enter Shipping Information</h2>
         <form id="checkout-form">
           <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" required>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
 
           <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" required>
+          <input type="email" id="email" name="email" placeholder="Enter your email address" required>
 
           <label for="address">Shipping Address</label>
-          <textarea id="address" name="address" rows="4" required></textarea>
+          <textarea id="address" name="address" placeholder="Enter your shipping address" required></textarea>
 
           <label for="payment-method">Payment Method</label>
           <select id="payment-method" name="payment-method" required>
@@ -74,6 +56,15 @@
             <option value="paypal">PayPal</option>
             <option value="mpesa">M-Pesa</option>
           </select>
+
+          <!-- M-Pesa Details (Hidden by Default) -->
+          <div id="mpesa-details" class="hidden">
+            <label for="mpesa-phone">M-Pesa Phone Number</label>
+            <input type="text" id="mpesa-phone" name="mpesa-phone" placeholder="Enter your M-Pesa phone number" required>
+            
+            <label for="mpesa-pin">Enter M-Pesa PIN (for payment confirmation)</label>
+            <input type="password" id="mpesa-pin" name="mpesa-pin" placeholder="Enter your M-Pesa PIN" required>
+          </div>
 
           <button type="submit" class="btn">Proceed to Payment</button>
         </form>
@@ -86,25 +77,83 @@
   </footer>
 
   <script>
+    // Fetch cart data from local storage
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let totalAmount = 0;
+
+    // Render cart items dynamically
+    const cartItemsContainer = document.getElementById("cart-items-container");
+    cartItems.forEach(item => {
+      const cartItemDiv = document.createElement("div");
+      cartItemDiv.classList.add("cart-item");
+
+      cartItemDiv.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <div class="cart-item-details">
+          <h3>${item.name}</h3>
+          <p>Price: Ksh ${item.price}</p>
+          <p>Quantity: ${item.quantity}</p>
+          <p>Total: Ksh ${item.price * item.quantity}</p>
+        </div>
+      `;
+      cartItemsContainer.appendChild(cartItemDiv);
+
+      totalAmount += item.price * item.quantity; // Calculate total
+    });
+
+    // Update total amount on the page
+    document.getElementById("total-amount").textContent = `Ksh ${totalAmount}`;
+
+    // Show or hide M-Pesa details based on payment method
+    document.getElementById("payment-method").addEventListener("change", function() {
+      const mpesaDetails = document.getElementById("mpesa-details");
+      if (this.value === "mpesa") {
+        mpesaDetails.classList.remove("hidden");
+      } else {
+        mpesaDetails.classList.add("hidden");
+      }
+    });
+
     // Form submission handling
     document.getElementById("checkout-form").addEventListener("submit", function(event) {
       event.preventDefault();
+
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const address = document.getElementById("address").value;
       const paymentMethod = document.getElementById("payment-method").value;
+      const mpesaPhone = document.getElementById("mpesa-phone").value;
+      const mpesaPin = document.getElementById("mpesa-pin").value;
 
-      // Simulate order confirmation
-      alert(`Order Confirmation:
-        Name: ${name}
-        Email: ${email}
-        Address: ${address}
-        Payment Method: ${paymentMethod}
-        Total: Ksh 70,000
-      `);
+      if (paymentMethod === "mpesa" && !mpesaPhone) {
+        alert("Please enter your M-Pesa phone number.");
+        return;
+      }
 
-      // You can redirect to a thank you or order summary page
-      window.location.href = "order-confirmation.html";
+      if (paymentMethod === "mpesa" && !mpesaPin) {
+        alert("Please enter your M-Pesa PIN.");
+        return;
+      }
+
+      // Simulate M-Pesa STK Push process
+      if (paymentMethod === "mpesa") {
+        alert(`M-Pesa STK Push initiated for phone number: ${mpesaPhone}. Please enter your M-Pesa PIN to complete the payment.`);
+        
+        // Simulate redirecting to M-Pesa confirmation page (M-Pesa API interaction will be handled server-side)
+        window.location.href = "mpesa-confirmation.html"; // This is a placeholder URL
+      } else {
+        // Handle other payment methods (e.g., Credit Card, PayPal)
+        alert(`Order Confirmation:
+          Name: ${name}
+          Email: ${email}
+          Address: ${address}
+          Payment Method: ${paymentMethod}
+          Total: Ksh ${totalAmount}
+        `);
+
+        // Simulate successful order
+        window.location.href = "order-confirmation.html"; // This is a placeholder URL
+      }
     });
   </script>
 </body>
