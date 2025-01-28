@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="./styles/admin-dashboard.css">
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.16.0/firebase-storage.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Admin Dashboard</h1>
+        </div>
+    </header>
+    <div class="admin-dashboard-container">
+        <h2>Add New Product</h2>
+        <form id="add-product-form">
+            <div class="form-group">
+                <label for="product-name">Product Name:</label>
+                <input type="text" id="product-name" required>
+            </div>
+            <div class="form-group">
+                <label for="product-description">Description:</label>
+                <textarea id="product-description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="product-price">Price:</label>
+                <input type="number" id="product-price" required>
+            </div>
+            <div class="form-group">
+                <label for="product-category">Category:</label>
+                <input type="text" id="product-category" required>
+            </div>
+            <div class="form-group">
+                <label for="product-photo">Image:</label>
+                <input type="file" id="product-photo" accept="image/*" required>
+            </div>
+            <button type="submit" class="submit-btn">Add Product</button>
+            <div id="upload-status"></div>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2025 Green Market</p>
+    </footer>
+    <script src="./Ascripts/admin.js"></script>
+</body>
+</html>

@@ -1,148 +1,64 @@
-// Simulate fetching existing products from a database
-const products = [
-    { name: "Product 1", price: 100, category: "Electronics" },
-    { name: "Product 2", price: 200, category: "Clothing" },
-  ];
+// Initialize Firebase
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDmIwtSJ4_lOk2V4o06T89fKOGNa6hVVTw",
+  authDomain: "backup-1e9ac.firebaseapp.com",
+  databaseURL: "https://backup-1e9ac-default-rtdb.firebaseio.com",
+  projectId: "backup-1e9ac",
+  storageBucket: "backup-1e9ac.firebasestorage.app",
+  messagingSenderId: "106435832288",
+  appId: "1:106435832288:web:8fcd5d9754738f79982385"
+};
+firebase.initializeApp(firebaseConfig);
 
-  const productListContainer = document.getElementById('product-list');
-  
-  // Render existing products dynamically
-  products.forEach(product => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${product.name}</td>
-      <td>${product.price}</td>
-      <td>${product.category}</td>
-      <td><button>Edit</button><button>Delete</button></td>
-    `;
-    productListContainer.appendChild(row);
-  });
+// Firestore and Storage References
+const db = firebase.firestore();
+const storage = firebase.storage();
+const productsCollection = db.collection('products');
 
-  // Handle form submission for adding new products
-  document.getElementById('add-product-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+// Form Submission Handler
+document.getElementById('add-product-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-    const name = document.getElementById('product-name').value;
-    const description = document.getElementById('product-description').value;
-    const price = document.getElementById('product-price').value;
-    const image = document.getElementById('product-image').value;
-    const category = document.getElementById('product-category').value;
+  const form = e.target;
+  const statusDiv = document.getElementById('upload-status');
+  const name = form['product-name'].value;
+  const description = form['product-description'].value;
+  const price = parseFloat(form['product-price'].value);
+  const category = form['product-category'].value;
+  const imageFile = form['product-photo'].files[0];
 
-    // Simulate adding the product to the database (you'll need backend logic for this)
-    products.push({ name, description, price, image, category });
-
-    // Add the new product to the table
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
-      <td>${name}</td>
-      <td>${price}</td>
-      <td>${category}</td>
-      <td><button>Edit</button><button>Delete</button></td>
-    `;
-    productListContainer.appendChild(newRow);
-
-    // Clear the form fields
-    document.getElementById('add-product-form').reset();
-  });
-
-  
-document.getElementById("upload-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-    
-    const fileInput = document.getElementById("product-photo");
-    const file = fileInput.files[0];
-  
-    if (!file) {
-      alert("Please select a photo to upload.");
+  if (!name || !description || isNaN(price) || !category || !imageFile) {
+      statusDiv.textContent = 'All fields are required.';
+      statusDiv.className = 'status-message error';
       return;
-    }
-  
-    const formData = new FormData();
-    formData.append("image", file);
-  
-    // Show status message
-    document.getElementById("upload-status").textContent = "Uploading...";
-  
-    // Send to backend (Node.js or Firebase)
-    fetch("/upload", { // The URL endpoint on your server that handles file uploads
-      method: "POST",
-      body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        document.getElementById("upload-status").textContent = "Upload Successful!";
-        console.log("Image uploaded:", data.imageUrl); // Get the uploaded image URL
-      } else {
-        document.getElementById("upload-status").textContent = "Upload Failed. Try Again.";
-        console.error("Upload error:", data.message);
-      }
-    })
-    .catch(error => {
-      document.getElementById("upload-status").textContent = "An error occurred.";
-      console.error("Error:", error);
-    });
-  });
-  
-  const express = require("express");
-const multer = require("multer");
-const firebaseAdmin = require("firebase-admin");
-const path = require("path");
-
-// Initialize Firebase Admin SDK
-firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.applicationDefault(),
-  storageBucket: "your-app-id.appspot.com", // Replace with your Firebase project bucket
-});
-
-const app = express();
-const port = 3000;
-
-// Configure multer for file uploads
-const storage = multer.memoryStorage(); // Store file in memory
-const upload = multer({ storage: storage });
-
-// Upload Route
-app.post("/upload", upload.single("image"), async (req, res) => {
-  try {
-    if (!req.file) {
-      return res.status(400).json({ success: false, message: "No file uploaded" });
-    }
-
-    // Generate a unique file name
-    const fileName = `${Date.now()}_${path.extname(req.file.originalname)}`;
-    
-    // Upload image to Firebase Storage
-    const bucket = firebaseAdmin.storage().bucket();
-    const fileUpload = bucket.file(fileName);
-    
-    await fileUpload.save(req.file.buffer, {
-      contentType: req.file.mimetype,
-      public: true,
-    });
-
-    // Get the public URL of the uploaded image
-    const imageUrl = `https://storage.googleapis.com/${bucket.name}/${fileName}`;
-
-    // Save image URL in the database (e.g., Firebase Firestore or MySQL)
-    // For Firebase Firestore:
-    const db = firebaseAdmin.firestore();
-    await db.collection("products").add({
-      imageUrl: imageUrl,
-      createdAt: firebaseAdmin.firestore.FieldValue.serverTimestamp(),
-    });
-
-    res.json({ success: true, imageUrl: imageUrl });
-  } catch (error) {
-    res.status(500).json({ success: false, message: error.message });
   }
+
+  try {
+      // Upload Image to Firebase Storage
+      const imageRef = storage.ref(`products/${Date.now()}_${imageFile.name}`);
+      const snapshot = await imageRef.put(imageFile);
+      const imageUrl = await snapshot.ref.getDownloadURL();
+
+      // Save Product Details to Firestore
+      await productsCollection.add({
+          name,
+          description,
+          price,
+          category,
+          imageUrl,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+
+      statusDiv.textContent = 'Product added successfully!';
+      statusDiv.className = 'status-message success';
+      form.reset();
+  } catch (error) {
+      console.error('Error:', error);
+      statusDiv.textContent = `Error: ${error.message}`;
+      statusDiv.className = 'status-message error';
+  }
+
+  // Clear Status Message After 5 Seconds
+  setTimeout(() => (statusDiv.textContent = ''), 5000);
 });
-const user = firebase.auth().currentUser;
-if (user && user.email === "admin@example.com") {
-  // Allow upload
-} else {
-  // Redirect or show an error message
-}
-
-
-    
