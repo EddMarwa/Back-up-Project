@@ -3,30 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Detail - Green Market</title>
-  <link rel="stylesheet" href="./styles/product-detail.css">
+  <title>Product Detail</title>
+  <link rel="stylesheet" href="styles/product-detail.css">
 </head>
 <body>
   <header>
     <nav>
       <div class="logo">
-        <img src="./images/logo.png" alt="Green Market Logo">
+        <img src="images/logo.png" alt="Green Market Logo">
       </div>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="product-list.html">Products</a></li>
         <li><a href="cart.html">Cart</a></li>
-        <li><a href="login.html">Logout</a></li>
+        <li><a href="login.html">Login</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="product-detail">
-      <div class="product-detail-container" id="product-detail-container">
-        <!-- Product details will be injected here -->
+    <div class="product-detail-container">
+      <img src="images/laptop.jfif" alt="Laptop">
+      <h2>Laptop</h2>
+      <p>Ksh 40,000</p>
+      <p>This is a second-hand laptop in great condition.</p>
+
+      <!-- Rent/Buy Buttons -->
+      <div class="purchase-options">
+        <button class="btn" id="buy-btn">Buy Now</button>
+        <button class="btn" id="rent-btn">Rent Now</button>
       </div>
-    </section>
+
+      <!-- Rent Period Input (hidden by default) -->
+      <div id="rent-period" class="hidden">
+        <label for="rental-days">Rental Period (Days):</label>
+        <input type="number" id="rental-days" name="rental-days" placeholder="Enter number of days">
+        <button class="btn" id="confirm-rent">Confirm Rent</button>
+      </div>
+    </div>
+
+    <div class="product-detail-container">
+      <img src="images/phone.jfif" alt="Laptop">
+      <h2>Phone</h2>
+      <p>Ksh 30,000</p>
+      <p>This is a second-hand phone in great condition.</p>
+
+      <!-- Rent/Buy Buttons -->
+      <div class="purchase-options">
+        <button class="btn" id="buy-btn">Buy Now</button>
+        <button class="btn" id="rent-btn">Rent Now</button>
+      </div>
+
+      <!-- Rent Period Input (hidden by default) -->
+      <div id="rent-period" class="hidden">
+        <label for="rental-days">Rental Period (Days):</label>
+        <input type="number" id="rental-days" name="rental-days" placeholder="Enter number of days">
+        <button class="btn" id="confirm-rent">Confirm Rent</button>
+      </div>
+    </div>
+
+    <div class="product-detail-container">
+      <img src="images/headphone.jfif" alt="Laptop">
+      <h2>Headphone</h2>
+      <p>Ksh 5,000</p>
+      <p>This is a rental product in great condition.</p>
+
+      <!-- Rent/Buy Buttons -->
+      <div class="purchase-options">
+        <button class="btn" id="buy-btn">Buy Now</button>
+        <button class="btn" id="rent-btn">Rent Now</button>
+      </div>
+
+      <!-- Rent Period Input (hidden by default) -->
+      <div id="rent-period" class="hidden">
+        <label for="rental-days">Rental Period (Days):</label>
+        <input type="number" id="rental-days" name="rental-days" placeholder="Enter number of days">
+        <button class="btn" id="confirm-rent">Confirm Rent</button>
+      </div>
+    </div>
   </main>
 
   <footer>
